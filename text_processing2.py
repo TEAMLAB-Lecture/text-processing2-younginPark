@@ -90,13 +90,16 @@ def to_camel_case(underscore_str):
     """
     camelcase_str = ''
     chk = False
-    for i in range(len(underscore_str)):
-        if underscore_str[i] == '_':
-            chk = True
-        else:
-            if chk and len(camelcase_str) > 0:
-                camelcase_str += underscore_str[i].upper()
+    if '_' in underscore_str:
+        for i in range(len(underscore_str)):
+            if underscore_str[i] == '_':
+                chk = True
             else:
-                camelcase_str += underscore_str[i].lower()
-            chk = False
+                if chk and len(camelcase_str) > 0:
+                    camelcase_str += underscore_str[i].upper()
+                else:
+                    camelcase_str += underscore_str[i].lower()
+                chk = False
+    else:
+        camelcase_str = underscore_str
     return camelcase_str
