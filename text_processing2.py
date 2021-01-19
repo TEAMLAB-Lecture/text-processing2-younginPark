@@ -2,6 +2,27 @@
 # Test Processing II  #
 #######################
 
+def numtochar(num):
+    if num == '0':
+        return 'zero'
+    elif num == '1':
+        return 'one'
+    elif num == '2':
+        return 'two'
+    elif num == '3':
+        return 'three'
+    elif num == '4':
+        return 'four'
+    elif num == '5':
+        return 'five'
+    elif num == '6':
+        return 'six'
+    elif num == '7':
+        return 'seven'
+    elif num == '8':
+        return 'eight'
+    elif num == '9':
+        return 'nine'
 
 def digits_to_words(input_string):
     """
@@ -28,9 +49,12 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    digit_string = ''
+    for i in range(len(input_string)):
+        if 48 <= ord(input_string[i]) and ord(input_string[i]) <= 57:
+            digit_string += numtochar(input_string[i]) + ' '
+    digit_string = digit_string.rstrip()
     return digit_string
-
 
 """
 컴퓨터 프로그래밍에 많은 명명 규칙이 있지만, 두 규칙이 특히 흔히 쓰입니다. 
@@ -64,5 +88,15 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    camelcase_str = ''
+    chk = False
+    for i in range(len(underscore_str)):
+        if underscore_str[i] == '_':
+            chk = True
+        else:
+            if chk and len(camelcase_str) > 0:
+                camelcase_str += underscore_str[i].upper()
+                chk = False
+            else:
+                camelcase_str += underscore_str[i].lower()
     return camelcase_str
